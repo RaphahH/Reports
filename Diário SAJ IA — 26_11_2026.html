@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diário SAJ IA — 26 de novembro de 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --page:#eef1f5; --ink:#16191f; --ink-soft:#4a505c; --rule:#d5dae2;
+  --blue:#1b4e9b; --blue-deep:#123a77; --red:#c8161d;
+  --box:#f3f6fa; --dark:#1c1f26; --dark-ink:#f3f4f6;
+  --ok:#1f8a4c; --warn:#c98a00; --stop:#c8161d;
+  --display:"Oswald","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#181b21; --page:#0f1115; --ink:#eceef2; --ink-soft:#a9b0bc; --rule:#2e333d;
+    --blue:#2f66bd; --blue-deep:#1e4a8f; --red:#d4262d; --box:#20242c; --dark:#262a33;
+    --ok:#3fbf75; --warn:#e5b02e; --stop:#ef4b51; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#181b21; --page:#0f1115; --ink:#eceef2; --ink-soft:#a9b0bc; --rule:#2e333d;
+  --blue:#2f66bd; --blue-deep:#1e4a8f; --red:#d4262d; --box:#20242c; --dark:#262a33;
+  --ok:#3fbf75; --warn:#e5b02e; --stop:#ef4b51; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--serif);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+.sheet{max-width:1180px;margin:clamp(0px,2vw,28px) auto;background:var(--paper);box-shadow:0 1px 0 var(--rule),0 20px 50px -30px rgba(0,0,0,.35)}
+.meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem 1.5rem;padding:.6rem clamp(1rem,3vw,2rem);font-family:var(--display);font-weight:500;font-size:.8rem;letter-spacing:.02em;color:var(--ink-soft);border-bottom:1px solid var(--rule)}
+
+.masthead{background:var(--blue);color:#fff;text-align:center;padding:clamp(1rem,3vw,1.6rem) 1rem clamp(.8rem,2vw,1.1rem);position:relative}
+.masthead h1{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(2.8rem,10vw,6.8rem);line-height:.9}
+.masthead p{margin:.5rem 0 0;font-family:var(--display);font-weight:500;font-size:clamp(.8rem,1.8vw,1.05rem);letter-spacing:.28em;text-transform:uppercase;opacity:.92}
+.masthead::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:6px;background:var(--blue-deep)}
+
+nav.sections{display:flex;gap:1.5rem;overflow-x:auto;padding:.9rem clamp(1rem,3vw,2rem) .7rem;border-bottom:1px solid var(--rule);font-family:var(--display);font-weight:600;font-size:.95rem;scrollbar-width:none}
+nav.sections::-webkit-scrollbar{display:none}
+nav.sections a{text-decoration:none;white-space:nowrap;padding-bottom:.2rem;border-bottom:2px solid transparent}
+nav.sections a:hover{border-color:var(--red)}
+
+main{padding:clamp(1rem,3vw,2rem)}
+
+.banner{background:var(--red);color:#fff;padding:.15em .3em .2em;margin:0 0 clamp(1rem,2.5vw,1.5rem);font-family:var(--display);font-weight:700;font-size:clamp(2rem,6.6vw,4.8rem);line-height:1.02;text-align:center;text-transform:uppercase}
+
+h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.1;text-transform:uppercase;margin:0 0 .6rem}
+.kicker{font-family:var(--display);font-weight:600;font-size:.85rem;color:var(--blue);margin-bottom:.35rem;display:block}
+p{margin:0 0 .75rem}
+
+/* Manchete */
+.lead{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(1rem,3vw,2rem);padding-bottom:clamp(1.25rem,3vw,2rem);border-bottom:3px double var(--rule)}
+.lead h2{font-size:clamp(1.5rem,3vw,2.3rem)}
+.lead .body{columns:2 15rem;column-gap:1.5rem;hyphens:auto}
+.lead .body p:first-child::first-letter{float:left;font-family:var(--display);font-weight:700;font-size:3.4rem;line-height:.85;margin:.3rem .45rem 0 0;color:var(--red)}
+.integrations{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.4rem}
+.integrations span{font-family:var(--display);font-weight:600;font-size:.9rem;padding:.2rem .7rem;border:2px solid var(--blue);border-radius:999px;color:var(--blue)}
+
+/* Painel de status */
+.status{background:var(--dark);color:var(--dark-ink);border-radius:10px;padding:1.25rem}
+.status h3{font-size:1.35rem;color:#fff}
+.status .legend{font-family:var(--display);font-size:.85rem;opacity:.8;margin-bottom:.9rem}
+.status ul{list-style:none;margin:0;padding:0}
+.status li{display:grid;grid-template-columns:1.4rem 1fr;gap:.35rem;padding:.5rem 0;border-top:1px solid rgba(255,255,255,.12);font-size:.95rem;line-height:1.4}
+.status li b{font-family:var(--display);font-weight:600;font-size:1rem;display:block}
+
+/* Grade de matérias */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(1.25rem,3vw,2rem)}
+.grid>article{padding:0 clamp(.9rem,2vw,1.4rem) 1.5rem}
+.grid>article:nth-child(3n+1){padding-left:0}
+.grid>article:nth-child(3n){padding-right:0}
+.grid>article:not(:nth-child(3n+1)){border-left:1px solid var(--rule)}
+.grid h3{font-size:clamp(1.2rem,2vw,1.5rem)}
+.tag{display:inline-block;font-family:var(--display);font-size:.8rem;font-weight:600;padding:.1rem .55rem;border-radius:4px;margin-bottom:.5rem;color:#fff}
+.tag.ok{background:var(--ok)}.tag.warn{background:var(--warn);color:#1a1300}.tag.stop{background:var(--stop)}
+.grid ul{margin:0 0 .75rem;padding-left:1.1rem}
+.grid li{margin-bottom:.3rem}
+
+/* Comitê */
+.committee{display:grid;grid-template-columns:auto 1fr;gap:clamp(1rem,3vw,2rem);align-items:start;background:var(--box);border-left:6px solid var(--blue);border-radius:10px;padding:clamp(1rem,2.5vw,1.5rem);margin-top:.5rem}
+.clock{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,6vw,4rem);line-height:.9;color:var(--blue);text-align:center}
+.clock small{display:block;font-size:.95rem;font-weight:500;color:var(--ink-soft)}
+.committee ol{margin:.2rem 0 0;padding-left:1.2rem}
+.committee li{margin-bottom:.35rem}
+
+/* Linha do tempo */
+.timeline{margin-top:clamp(1.5rem,3vw,2rem)}
+.timeline h3{font-size:1.4rem}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:4px solid var(--red);padding-top:1rem;margin-top:.8rem}
+.steps div{padding-right:1rem;position:relative}
+.steps div::before{content:"";position:absolute;top:calc(-1rem - 10px);left:0;width:16px;height:16px;border-radius:50%;background:var(--paper);border:4px solid var(--red)}
+.steps time{font-family:var(--display);font-weight:700;font-size:1.3rem;display:block;color:var(--red)}
+.steps p{font-size:.95rem;line-height:1.45}
+
+/* Tabela de ações */
+.actions{margin-top:clamp(1.5rem,3vw,2rem)}
+.actions h3{font-size:1.4rem}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:620px}
+th{font-family:var(--display);font-weight:600;text-align:left;background:var(--blue);color:#fff;padding:.55rem .75rem}
+td{padding:.55rem .75rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tbody tr:nth-child(even) td{background:var(--box)}
+
+footer{padding:1rem clamp(1rem,3vw,2rem) 1.4rem;border-top:1px solid var(--rule);font-family:var(--display);font-size:.85rem;color:var(--ink-soft);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;align-items:center}
+.theme-toggle{background:none;border:1px solid var(--rule);color:var(--ink-soft);font:inherit;padding:.2rem .7rem;border-radius:999px;cursor:pointer}
+
+@media (prefers-reduced-motion:no-preference){
+  .banner{animation:press .6s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes press{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+}
+@media (max-width:900px){
+  .lead{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .grid>article{padding:0 0 1.5rem}
+  .grid>article:not(:nth-child(3n+1)){border-left:0}
+  .grid>article:nth-child(even){padding-left:1.25rem;border-left:1px solid var(--rule)}
+  .grid>article:nth-child(odd){padding-right:1.25rem}
+  .steps{grid-template-columns:1fr;border-top:0;border-left:4px solid var(--red);padding:0 0 0 1.25rem}
+  .steps div{padding:0 0 .9rem}
+  .steps div::before{top:.35rem;left:calc(-1.25rem - 10px)}
+}
+@media (max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .grid>article:nth-child(n){padding:1.25rem 0 0;border-left:0;border-top:1px solid var(--rule)}
+  .grid>article:first-child{border-top:0;padding-top:0}
+  .committee{grid-template-columns:1fr}
+  .meta{justify-content:center;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="meta">
+    <span>Daily [SAJ IA] | Acompanhamento do Estúdio V2</span>
+    <span>26 de novembro de 2026</span>
+    <span>Compartilhe com os times</span>
+  </div>
+
+  <header class="masthead">
+    <h1>Diário SAJ IA</h1>
+    <p>Acompanhamento do Estúdio V2</p>
+  </header>
+
+  <nav class="sections" aria-label="Seções">
+    <a href="#manchete">Pereira Barreto</a>
+    <a href="#mp">MP</a>
+    <a href="#procuradorias">Procuradorias</a>
+    <a href="#ativacoes">Ativações</a>
+    <a href="#suporte">Suporte</a>
+    <a href="#comite">Comitê</a>
+    <a href="#acoes">Itens de ação</a>
+  </nav>
+
+  <main>
+    <h2 class="banner" id="manchete">Pereira Barreto pode ser o primeiro contrato 100% SAJ IA</h2>
+
+    <section class="lead">
+      <article>
+        <span class="kicker">Comercial</span>
+        <h2>Proposta avançada, termo de teste reduzido a 20 dias e implantação de baixo esforço</h2>
+        <div class="body">
+          <p>Pedro Henrique Machado informou que Pereira Barreto está avançada comercialmente. A proposta ainda depende do processo de aprovação de preço, mas há expectativa de aceleração.</p>
+          <p>O termo de uso e teste deve ser ajustado para 20 dias, com o objetivo de acelerar a decisão do cliente.</p>
+          <p>A implantação foi considerada de baixo esforço, com possibilidade de ativação rápida. A sugestão é aproveitar o cliente para validar o fluxo de ponta a ponta, incluindo a implantação via Sensedata e a operação de suporte.</p>
+          <p>Também foi discutida a ativação do pacote de integrações já disponíveis:</p>
+          <div class="integrations"><span>TRF3</span><span>TJSP</span><span>STF</span><span>STJ</span></div>
+        </div>
+      </article>
+
+      <aside class="status" aria-label="Painel de status das frentes">
+        <h3>Painel de status</h3>
+        <div class="legend">🟢 Sob controle &nbsp; 🟡 Alerta, sem contorno &nbsp; 🔴 Paralisação</div>
+        <ul>
+          <li><span>🟢</span><span><b>Fluxo completo do MP</b>SAJ 5 hoje, SAJ 6 e fechamento amanhã.</span></li>
+          <li><span>🟢</span><span><b>Pereira Barreto</b>Aguarda só a aprovação de preço.</span></li>
+          <li><span>🟢</span><span><b>Vila Bela e Araçatuba</b>Ativação prevista para a próxima semana.</span></li>
+          <li><span>🟢</span><span><b>Piloto do SAJ Ajuda</b>Conchas e Brasnorte na próxima semana.</span></li>
+          <li><span>🟡</span><span><b>Suporte para a escala</b>O modelo atual não comporta 100 a 150 usuários. Meta: 04/12.</span></li>
+          <li><span>🟡</span><span><b>Retorno ao SAJ 5</b>Procuradorias dependentes aguardam a entrega de 02/12.</span></li>
+          <li><span>🟡</span><span><b>Comunicação de releases</b>Sem prazo definido.</span></li>
+          <li><span>🔴</span><span><b>Clientes de retenção</b>Bloqueados por ACT e convênios vencidos. Plano na sexta.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article id="mp">
+        <span class="tag ok">🟢 Sob controle</span>
+        <span class="kicker">Ministério Público</span>
+        <h3>Fluxo completo muito perto de ficar disponível</h3>
+        <p>O protocolo está em homologação e os ajustes do Estúdio estão avançados. Thiago Stabile indicou que o SAJ 5 deve ser entregue hoje e o SAJ 6 amanhã.</p>
+        <p>A conclusão do relacionamento entre Estúdio e protocolo deve fechar o fluxo completo para o MP amanhã. William Moreira Borges pretende iniciar a homologação com Samuel assim que o pacote estiver disponível.</p>
+      </article>
+
+      <article id="procuradorias">
+        <span class="tag warn">🟡 Alerta</span>
+        <span class="kicker">Procuradorias</span>
+        <h3>Complemento do SAJ 5 previsto para 02/12</h3>
+        <p>Para clientes 100% SAJ IA, como Conchas, o protocolo pelo Estúdio pode avançar sem esperar o retorno automatizado ao SAJ 5.</p>
+        <p>Já para as Procuradorias que dependem do SAJ 5, ainda é preciso desenvolver o retorno dos dados após o protocolo. Thiago Stabile estimou três dias de execução, com entrega até 02/12.</p>
+      </article>
+
+      <article id="ativacoes">
+        <span class="tag ok">🟢 Sob controle</span>
+        <span class="kicker">Ativações</span>
+        <h3>Novas ativações e retomada de clientes</h3>
+        <ul>
+          <li>Brasnorte está ativado, mas sem acompanhamento de uso por indisponibilidade do cliente. Retomada em 01/12.</li>
+          <li>Vila Bela e Araçatuba estão em estágio avançado, com ativação esperada para a próxima semana.</li>
+          <li>Itaiópolis e Pereira Barreto tiveram apresentações.</li>
+          <li>Em Mato Grosso há oportunidade de acelerar, sem a barreira de convênio de São Paulo.</li>
+        </ul>
+      </article>
+
+      <article>
+        <span class="tag stop">🔴 Paralisação</span>
+        <span class="kicker">Retenção</span>
+        <h3>Clientes bloqueados por ACT e convênios vencidos</h3>
+        <p>Com a evolução da Judit, será retomada a ativação dos clientes de retenção que estavam bloqueados por ACT ou convênios vencidos.</p>
+        <p>Scheila Herdt e William Moreira Borges estruturam o plano de retomada na sexta-feira.</p>
+      </article>
+
+      <article id="suporte">
+        <span class="tag warn">🟡 Alerta</span>
+        <span class="kicker">Suporte</span>
+        <h3>SAJ Ajuda e suporte precisam estar prontos para a escala</h3>
+        <p>O modelo atual de suporte não comporta uma expansão para algo como 100 a 150 usuários, principalmente nos MPs.</p>
+        <p>Thiago Stabile pretende iniciar a implantação do SAJ Ajuda na próxima semana, por Conchas e Brasnorte, para testar o fluxo, organizar a base de conhecimento e montar um painel de atendimento antes da expansão para o MP. A meta é concluir o suporte automatizado até 04/12.</p>
+      </article>
+
+      <article>
+        <span class="tag warn">🟡 Alerta</span>
+        <span class="kicker">Produto e Implantação</span>
+        <h3>Gap de comunicação sobre novas funcionalidades</h3>
+        <p>William Moreira Borges apontou que a consultoria fica sabendo de funcionalidades já em produção pelos próprios clientes ou por outros interlocutores. Scheila Herdt reforçou que, assim, o time não consegue demonstrar o valor das entregas.</p>
+        <p>Thiago Stabile explicou que está sendo estruturada uma atualização mais automatizada de versões e conteúdo, integrada à base de conhecimento do SAJ Ajuda.</p>
+      </article>
+    </section>
+
+    <section class="committee" id="comite">
+      <div class="clock">10h<small>amanhã, 27/11</small></div>
+      <div>
+        <span class="kicker">Comitê</span>
+        <h3>Pauta do comitê de amanhã</h3>
+        <ol>
+          <li>Status da integração SAJ 5 + Estúdio + Protocolo para o MP.</li>
+          <li>Estratégia e cronograma do MP Acre.</li>
+          <li>Resultado do acompanhamento presencial do MP Ceará e melhorias para a expansão.</li>
+          <li>Situação das ativações e retomadas de Procuradorias.</li>
+          <li>Próximos passos para ampliar o uso do Estúdio.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="timeline" aria-label="Próximos prazos">
+      <h3>Próximos prazos</h3>
+      <div class="steps">
+        <div><time>26/11</time><p>Entrega do SAJ 5 para o MP.</p></div>
+        <div><time>27/11</time><p>SAJ 6, fechamento do fluxo do MP e comitê às 10h.</p></div>
+        <div><time>01/12</time><p>Retomada do acompanhamento de uso de Brasnorte.</p></div>
+        <div><time>02/12</time><p>Retorno do protocolo ao SAJ 5 para Procuradorias.</p></div>
+        <div><time>04/12</time><p>Meta do fluxo de suporte automatizado.</p></div>
+      </div>
+    </section>
+
+    <section class="actions" id="acoes">
+      <h3>Itens de ação</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ação</th><th>Responsável</th><th>Prazo / direcionamento</th></tr></thead>
+          <tbody>
+            <tr><td>Ajustar o termo de Pereira Barreto para 20 dias</td><td>Pedro Henrique Machado + Andressa</td><td>Imediato</td></tr>
+            <tr><td>Avançar contratação e implantação de Pereira Barreto</td><td>Pedro Henrique Machado + Comercial/Implantação</td><td>Oportunidade prioritária</td></tr>
+            <tr><td>Homologar fluxo de protocolo/pooling do MP</td><td>William Moreira Borges + Samuel + time técnico</td><td>A partir de amanhã</td></tr>
+            <tr><td>Finalizar Estúdio + protocolo para fechar o fluxo completo do MP</td><td>Thiago Stabile + Desenvolvimento</td><td>Amanhã</td></tr>
+            <tr><td>Concluir integração SAJ 6</td><td>Thiago Stabile + time técnico</td><td>Amanhã</td></tr>
+            <tr><td>Desenvolver retorno do protocolo ao SAJ 5 para Procuradorias</td><td>Thiago Stabile + Desenvolvimento</td><td>02/12</td></tr>
+            <tr><td>Retomar acompanhamento de uso de Brasnorte</td><td>William Moreira Borges / Implantação</td><td>01/12</td></tr>
+            <tr><td>Preparar ativações de Vila Bela e Araçatuba</td><td>William Moreira Borges + Implantação</td><td>Próxima semana</td></tr>
+            <tr><td>Estruturar plano de retomada dos clientes de retenção</td><td>Scheila Herdt + William Moreira Borges / Implantação</td><td>Planejamento na sexta-feira</td></tr>
+            <tr><td>Iniciar piloto do SAJ Ajuda em Conchas e Brasnorte</td><td>Thiago Stabile + time</td><td>Próxima semana</td></tr>
+            <tr><td>Estruturar fluxo automatizado de suporte</td><td>Thiago Stabile + time</td><td>Meta: 04/12</td></tr>
+            <tr><td>Melhorar o fluxo de comunicação de releases entre Produto e Implantação</td><td>Thiago Stabile + Produto</td><td>Junto ao SAJ Ajuda / release notes</td></tr>
+            <tr><td>Obter status dos pontos técnicos pendentes não apresentados nesta daily</td><td>Scheila Herdt</td><td>Cobrar retorno por escrito</td></tr>
+            <tr><td>Consolidar a visão para o comitê</td><td>Scheila Herdt + responsáveis pelas frentes</td><td>Amanhã, antes das 10h</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Diário SAJ IA • Daily de 26/11/2026 • Reunião transcrita</span>
+    <button class="theme-toggle" type="button" id="themeToggle">Alternar tema</button>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeToggle');
+  try{var saved=localStorage.getItem('saj-theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  btn.addEventListener('click',function(){
+    var current=root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=current==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('saj-theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
